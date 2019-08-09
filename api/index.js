@@ -18,54 +18,54 @@ app.get('/', (req, res, next) => {
 })
 
 app.get('/cv', async (rec, res) => {
-  const rows = await query('SELECT * FROM `info` ORDER BY `id` ASC')
-  const info = {
-    name: '',
-    birthday: '',
-    number: 0,
-    email: '',
-    website: '',
-    links: [],
+  const cv = {
+    info: {
+      name: '',
+      birthday: '',
+      number: 0,
+      email: '',
+      website: '',
+      links: [],
+    },
+    key_qualifications: {},
+    education: [],
+    volenteer_work: [],
+    other: [],
   }
-  rows.forEach(({ content, type, link }) => {
+
+  const infoTask = query('SELECT * FROM `info` ORDER BY `id` ASC')
+  const educationTask = query(
+    'SELECT * FROM `education` ORDER BY `startDate` ASC'
+  )
+  const [info, education] = await Promise.all([infoTask, educationTask])
+  info.forEach(({ content, type, link }) => {
     switch (type) {
       case 'name':
-        cv.name = content
+        cv.info.name = content
         break
       case 'birthday':
-        cv.birthday = content
+        cv.info.birthday = content
         break
       case 'adress':
-        cv.adress = content
+        cv.info.adress = content
         break
       case 'number':
-        cv.number = content
+        cv.info.number = content
         break
       case 'email':
-        cv.email = content
+        cv.info.email = content
         break
       case 'website':
-        cv.website = [content, link]
+        cv.info.website = [content, link]
         break
       case 'link':
-        cv.links.push([content, link])
+        cv.info.links.push([content, link])
     }
   })
-
-  const key_qualifications = {}
-  const education = []
-  const volenteer_work = []
-  const other = []
-
-  res.send(
-    JSON.stringify({
-      info,
-      key_qualifications,
-      education,
-      volenteer_work,
-      other,
-    })
-  )
+  education.forEach(({ school, type, startDate, endDate }) => {
+    cv.education.push({ school, type, startDate, endDate })
+  })
+  res.send(JSON.stringify(cv))
 })
 
 // export the server middleware
