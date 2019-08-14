@@ -1,0 +1,24 @@
+pipeline:
+  build:
+    image: node:12
+    pull: true
+    when:
+      event: push
+      branch:
+        include: [master]
+    commands:
+      - yarn
+      - yarn generate
+  deploy:
+    image: drillster/drone-rsync
+    hosts: [hanneko.no]
+    key: ${RSYNC_KEY}
+    secrets: [rsync_key]
+    target: /home/niklasmh/hanneko-cv
+    when:
+      status: success
+      event: tag
+      branch: master
+    script:
+      - cd /home/niklasmh/hanneko-cv
+      - docker-compose restart server
