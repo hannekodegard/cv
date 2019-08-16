@@ -29,16 +29,28 @@ app.get('/cv', async (_, res) => {
       links: [],
     },
     key_qualifications: {},
+    skills: [],
+    hobbies: [],
+    work: [],
     education: [],
-    volenteer_work: [],
-    other: [],
+    volunteer_work: [],
   }
 
-  const infoTask = query('SELECT * FROM `info` ORDER BY `id` ASC')
-  const educationTask = query(
-    'SELECT * FROM `education` ORDER BY `startDate` ASC'
-  )
-  const [info, education] = await Promise.all([infoTask, educationTask])
+  const [
+    info,
+    education,
+    work,
+    hobbies,
+    skills,
+    volunteer_work,
+  ] = await Promise.all([
+    query('SELECT * FROM `info` ORDER BY `id` ASC'),
+    query('SELECT * FROM `education` ORDER BY `startDate` ASC'),
+    query('SELECT * FROM `work` ORDER BY `startDate` ASC'),
+    query('SELECT * FROM `hobbies` ORDER BY `hobby` ASC'),
+    query('SELECT * FROM `skills` ORDER BY `skill` ASC'),
+    query('SELECT * FROM `volunteer_work` ORDER BY `startDate` ASC'),
+  ])
   info.forEach(({ content, type, link }) => {
     switch (type) {
       case 'name':
@@ -63,9 +75,27 @@ app.get('/cv', async (_, res) => {
         cv.info.links.push([content, link])
     }
   })
+
   education.forEach(({ school, type, startDate, endDate }) => {
     cv.education.push({ school, type, startDate, endDate })
   })
+
+  work.forEach(({ company, title, startDate, endDate }) => {
+    cv.work.push({ company, title, startDate, endDate })
+  })
+
+  hobbies.forEach(({ hobby, logo }) => {
+    cv.hobbies.push({ hobby, logo })
+  })
+
+  skills.forEach(({ skill, logo }) => {
+    cv.skills.push({ skill, logo })
+  })
+
+  volunteer_work.forEach(({ title, organisation, startDate, endDate }) => {
+    cv.volunteer_work.push({ title, organisation, startDate, endDate })
+  })
+
   conn.end()
   res.send(JSON.stringify(cv))
 })
