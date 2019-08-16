@@ -17,7 +17,7 @@ pipeline:
     target: /home/niklasmh/hanneko-cv
     when:
       status: success
-      event: tag
+      event: [push, tag]
       branch: master
     script:
       - systemctl restart hanneko-cv
