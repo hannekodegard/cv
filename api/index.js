@@ -3,21 +3,22 @@ const app = express()
 
 require('dotenv').config()
 
-const mysql = require('mysql')
-const util = require('util')
-const conn = mysql.createConnection({
-  host: process.env.MYSQL_HOST,
-  user: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
-})
-const query = util.promisify(conn.query).bind(conn)
-
-app.get('/', (req, res, next) => {
+app.get('/', (_, res) => {
   res.send('API root')
 })
 
-app.get('/cv', async (rec, res) => {
+app.get('/cv', async (_, res) => {
+  const mysql = require('mysql')
+  const util = require('util')
+  const conn = mysql.createConnection({
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
+  })
+  const query = util.promisify(conn.query).bind(conn)
+  conn.connect()
+
   const cv = {
     info: {
       name: '',
@@ -65,6 +66,7 @@ app.get('/cv', async (rec, res) => {
   education.forEach(({ school, type, startDate, endDate }) => {
     cv.education.push({ school, type, startDate, endDate })
   })
+  conn.end()
   res.send(JSON.stringify(cv))
 })
 
