@@ -2,7 +2,7 @@
   <div class="cv">
     <div class="key-info">
       <div class="picture">
-        <img src="~/static/Prom.JPG" alt="Picture" />
+        <img src="https://hanneko.no/hanne.jpg" alt="Picture" />
       </div>
       <div class="key-info-text">
         <div class="name">{{cv.info.name}}</div>
