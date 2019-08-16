@@ -18,9 +18,7 @@
     </div>
     <div class="work card">
       <h2 class="title">Jobberfaring</h2>
-      <div class="coop">{{'dummy'}}</div>
-      <div class="selskap">{{'dummy'}}</div>
-      <div class="swim">{{'dummy'}}</div>
+      <div v-for="w in cv.work" v-bind:key="w.company" class="item">{{w.company}}</div>
     </div>
     <div class="education card">
       <h2 class="title">Utdanning</h2>
@@ -28,64 +26,15 @@
     </div>
     <div class="volunteer card">
       <h2 class="title">Frivillig Arbeid</h2>
-      <div class="kose">{{'data'}}</div>
-      <div class="counsil">{{'data'}}</div>
+      <div v-for="v in cv.volunteer_work" v-bind:key="v.title" class="item">{{v.title}}</div>
     </div>
     <div class="hobbies card">
       <h2 class="title">Hobbyer</h2>
-      <div class="knitting">{{'data'}}</div>
-      <div class="baking">{{'data'}}</div>
-      <div class="programming">{{'data'}}</div>
-      <div class="movies">{{'data'}}</div>
-      <div class="music">{{'data'}}</div>
+      <div v-for="h in cv.hobbies" v-bind:key="h.hobby" class="item">{{h.hobby}}</div>
     </div>
     <div class="skills card dark">
       <h2 class="title">Kunnskaper</h2>
-      <div class="python">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">Python</h3>
-      </div>
-      <div class="java">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">Java</h3>
-      </div>
-      <div class="HTML">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">HTML5</h3>
-      </div>
-      <div class="JavaScript">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">JavaScript</h3>
-      </div>
-      <div class="vue">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">Vue</h3>
-      </div>
-      <div class="NUXT">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">NUXT</h3>
-      </div>
-      <div class="css">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">CSS</h3>
-      </div>
-      <div class="node">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">Node</h3>
-      </div>
-      <div class="mySQL">
-        {{'data'}}
-        <div class="logo">{{'data'}}</div>
-        <h3 class="title">mySQL</h3>
-      </div>
+      <div v-for="s in cv.skills" v-bind:key="s.skill" class="item">{{s.skill}}</div>
     </div>
   </div>
 </template>
