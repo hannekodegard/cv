@@ -49,4 +49,7 @@ module.exports = {
     extend(config, ctx) {},
   },
   serverMiddleware: ['~/api/index.js'],
+  env: {
+    port: process.env.PORT,
+  },
 }

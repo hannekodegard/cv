@@ -8,7 +8,8 @@ pipeline:
         include: [master]
     commands:
       - yarn
-      - yarn generate
+      - source .env
+      - PORT=$PORT yarn generate
   deploy:
     image: drillster/drone-rsync
     hosts: [hanneko.no]
