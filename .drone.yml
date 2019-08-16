@@ -20,5 +20,4 @@ pipeline:
       event: tag
       branch: master
     script:
-      - cd /home/niklasmh/hanneko-cv
-      - docker-compose restart server
+      - systemctl restart hanneko-cv
