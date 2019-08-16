@@ -1,9 +1,14 @@
 <template>
   <div class="cv">
     <div class="key-info">
-      <div class="name">{{cv.info.name}}</div>
-      <div class="picture">{{cv.info.picture}}</div>
-      <div class="key-qualifications">{{cv.key_qualifications}}</div>
+      <div class="picture">
+        <img src="~/static/Prom.JPG" alt="Picture" />
+      </div>
+      <div class="key-info-text">
+        <div class="name">{{cv.info.name}}</div>
+        <!---<div class="picture">{{cv.info.picture}}</div>-->
+        <div class="key-qualifications">{{cv.key_qualifications}}</div>
+      </div>
     </div>
     <div class="contact-info">
       <div class="number">{{cv.info.number}}</div>
@@ -97,12 +102,16 @@ export default {
 </script>
 
 <style scoped>
+body {
+  background-color: #ccc;
+}
 .cv {
-  max-width: 920px;
-  min-width: 920px;
+  max-width: 1000px;
+  min-width: 1000px;
+  margin: 2em auto;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: auto 25%;
-  grid-template-rows: 20% 15% 15% 25% 20% 10%;
+  grid-template-columns: auto 250px;
   grid-template-areas:
     'key-information skills'
     'contact-info skills'
@@ -110,30 +119,70 @@ export default {
     'work volunteer'
     'education education'
     'hobbies hobbies';
-  background-color: lightgray;
+  background-color: #cdcdcd;
   padding: 10px;
 }
-.card {
-  background-color: white;
-  margin: 10px;
+
+.name {
+  font-size: 2.5em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.picture > img {
   border-radius: 8px;
 }
+.card {
+  background-color: #e5e5e5;
+  margin: 10px;
+  border-radius: 8px;
+  padding: 1em;
+  box-shadow: 0px 2px 10px -6px black;
+}
 .card.dark {
-  background-color: black;
+  background-image: linear-gradient(0deg, #3a3a3a, #575757);
   color: #ddd;
+  box-shadow: 0px 2px 10px -3px black;
 }
 .key-info {
   grid-area: key-information;
   grid-column-end: 3;
-  background-color: violet;
+  background-color: #6e256e;
+  color: white;
   margin: -10px -10px 0;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.picture {
+  flex: 0 0 19%;
+}
+.key-info-text {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 .contact-info {
   grid-area: contact-info;
   grid-column-end: 3;
-  background-color: plum;
+  background-color: #8a458a;
+  color: white;
   margin: 0 -10px 0;
+  padding: 1em;
+  position: relative;
 }
+.contact-info::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+  height: 5px;
+  left: 0%;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.3), transparent);
+}
+
 .work {
   grid-area: work;
 }
