@@ -44,12 +44,12 @@ app.get('/cv', async (_, res) => {
     skills,
     volunteer_work,
   ] = await Promise.all([
-    query('SELECT * FROM `info` ORDER BY `id` ASC'),
-    query('SELECT * FROM `education` ORDER BY `startDate` ASC'),
-    query('SELECT * FROM `work` ORDER BY `startDate` ASC'),
-    query('SELECT * FROM `hobbies` ORDER BY `hobby` ASC'),
-    query('SELECT * FROM `skills` ORDER BY `skill` ASC'),
-    query('SELECT * FROM `volunteer_work` ORDER BY `startDate` ASC'),
+    query('SELECT * FROM info ORDER BY id ASC'),
+    query('SELECT * FROM education ORDER BY startDate DESC'),
+    query('SELECT * FROM work ORDER BY startDate DESC'),
+    query('SELECT * FROM hobbies ORDER BY rank ASC'),
+    query('SELECT * FROM skills ORDER BY rank ASC'),
+    query('SELECT * FROM volunteer_work ORDER BY startDate DESC'),
   ])
   info.forEach(({ content, type, link }) => {
     switch (type) {
