@@ -1,13 +1,13 @@
 <template>
   <div class="cv">
     <div class="key-info">
-      <div class="picture">
-        <img src="https://hanneko.no/hanne.jpg" alt="Picture" />
-      </div>
+      <img class="picture" src="https://hanneko.no/hanne.jpg" alt="Picture" />
       <div class="key-info-text">
-        <div class="name">{{cv.info.name}}</div>
+        <h1 class="name">{{cv.info.name}}</h1>
         <!---<div class="picture">{{cv.info.picture}}</div>-->
-        <div class="key-qualifications">{{cv.key_qualifications}}</div>
+        <div
+          class="key-qualifications"
+        >Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</div>
       </div>
     </div>
     <div class="contact-info">
@@ -53,8 +53,11 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap');
+
 body {
   background-color: #ccc;
+  font-family: 'Montserrat', sans-serif;
 }
 .cv {
   max-width: 1000px;
@@ -75,13 +78,15 @@ body {
 }
 
 .name {
-  font-size: 2.5em;
+  font-size: 3em;
   text-transform: uppercase;
-  text-align: center;
+  text-align: left;
+  line-height: 1;
 }
 
-.picture > img {
+.picture {
   border-radius: 8px;
+  width: 19%;
 }
 .card {
   background-color: #e5e5e5;
@@ -106,11 +111,10 @@ body {
   flex-direction: row;
   align-items: center;
 }
-.picture {
-  flex: 0 0 19%;
-}
 .key-info-text {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
+  margin-right: 250px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
 }
