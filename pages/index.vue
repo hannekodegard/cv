@@ -41,11 +41,23 @@
     </div>
     <div class="education card">
       <h2 class="title">Utdanning</h2>
-      <div v-for="e in cv.education" v-bind:key="e.school" class="item">{{e.school}}</div>
+      <div class="items">
+        <div v-for="e in cv.education" v-bind:key="e.school" class="item">
+          {{e.school}}
+          <div class="date">{{joinDates(e.startDate, e.endDate)}}</div>
+          <h2 class="major">{{e.type}}</h2>
+        </div>
+      </div>
     </div>
     <div class="volunteer card">
       <h2 class="title">Frivillig Arbeid</h2>
-      <div v-for="v in cv.volunteer_work" v-bind:key="v.title" class="item">{{v.title}}</div>
+      <div v-for="v in cv.volunteer_work" v-bind:key="v.title" class="item">
+        <div v-if="v.logo && v.logo.length" class="icon">
+          <img class="hclogo" v-if="v.logo.slice(0,4)==='http'" :src="v.logo" />
+          <font-awesome-icon v-else :icon="v.logo.split(' ')" />
+        </div>
+        {{v.title}}
+      </div>
     </div>
     <div class="hobbies card">
       <h2 class="title">Hobbyer</h2>
@@ -124,7 +136,7 @@ html {
     'hobbies hobbies';
   background-color: #c6c6c6;
   padding: 10px;
-  clip-path: polygon(
+  /* clip-path: polygon(
     0% 1px,
     5% 2px,
     10% 1px,
@@ -206,6 +218,7 @@ html {
     2px 10%,
     3px 5%
   );
+  */
 }
 h1 {
   font-size: 3.5em;
@@ -362,10 +375,80 @@ p {
 }
 .education {
   grid-area: education;
+  padding-bottom: 40px;
+}
+.education .major {
+  color: var(--secondary-color);
+  font-size: 1.5em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.education .major > span {
+  color: #242021;
+  font-size: 0.7em;
+  text-transform: none;
+}
+
+.education > .items {
+  display: flex;
+  flex-flow: row wrap;
+}
+.education > .items > .item {
+  flex: 1 1 calc(50% - 80px);
+  height: 150px;
+  margin-left: 80px;
+  position: relative;
+}
+.education > .items > .item > .date {
+  position: absolute;
+  background-color: var(--secondary-color);
+  transform: translate(-90px, calc(50% + 10px)) rotate(-90deg);
+  border-radius: 1em;
+  padding: 0.2em 1.1em;
+  font-size: 1em;
+  color: #e5e5e5;
+  font-weight: bold;
+  white-space: pre;
+  font-family: monospace;
+}
+.education > .items > .item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background-size: 9px 9px;
+  background-repeat: repeat-y;
+  background-image: radial-gradient(
+    circle at center,
+    #21212188 0,
+    #21212188 10%,
+    transparent 30%
+  );
 }
 .volunteer {
   grid-area: volunteer;
 }
+.hclogo {
+  filter: hue-rotate(-60deg);
+  filter: invert(43%) sepia(52%) saturate(5425%) hue-rotate(266deg)
+    brightness(85%) contrast(104%);
+}
+.volunteer .item > .icon > img {
+  width: 1em;
+}
+.volunteer .item > .icon {
+  font-size: 2em;
+  color: var(--secondary-color);
+}
+.volunteer .item {
+  font-size: 1em;
+  display: flex;
+  flex-direction: row;
+}
+
 .hobbies {
   grid-area: hobbies;
   display: flex;

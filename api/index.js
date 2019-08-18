@@ -45,7 +45,7 @@ app.get('/cv', async (_, res) => {
     volunteer_work,
   ] = await Promise.all([
     query('SELECT * FROM info ORDER BY id ASC'),
-    query('SELECT * FROM education ORDER BY startDate DESC'),
+    query('SELECT * FROM education WHERE visible = 1 ORDER BY startDate DESC'),
     query('SELECT * FROM work ORDER BY startDate DESC'),
     query('SELECT * FROM hobbies ORDER BY rank ASC'),
     query('SELECT * FROM skills ORDER BY rank ASC'),
@@ -92,9 +92,11 @@ app.get('/cv', async (_, res) => {
     cv.skills.push({ skill, logo })
   })
 
-  volunteer_work.forEach(({ title, organisation, startDate, endDate }) => {
-    cv.volunteer_work.push({ title, organisation, startDate, endDate })
-  })
+  volunteer_work.forEach(
+    ({ title, organisation, logo, startDate, endDate }) => {
+      cv.volunteer_work.push({ title, organisation, logo, startDate, endDate })
+    }
+  )
 
   conn.end()
   res.send(JSON.stringify(cv))
