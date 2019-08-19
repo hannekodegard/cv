@@ -37,6 +37,7 @@
           {{w.title}}
           <span class="location">- {{w.company}}</span>
         </h2>
+        <p class="description">{{w.description}}</p>
       </div>
     </div>
     <div class="education card">
@@ -56,7 +57,8 @@
           <img class="hclogo" v-if="v.logo.slice(0,4)==='http'" :src="v.logo" />
           <font-awesome-icon v-else :icon="v.logo.split(' ')" />
         </div>
-        {{v.title}}
+        <div class="title">{{v.title}}</div>
+        <p class="description">{{v.description}}</p>
       </div>
     </div>
     <div class="hobbies card">
@@ -67,8 +69,8 @@
       </div>
     </div>
     <div class="skills card dark">
-      <h2 class="title">Skills</h2>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+      <h2 class="title">Ferdigheter</h2>
+      <p>Ferdigheter jeg har tilegnet meg gjennoom skole og hobbyprosjekter.</p>
       <div class="items">
         <div v-for="s in cv.skills" v-bind:key="s.skill" class="item">
           <font-awesome-icon
@@ -436,17 +438,32 @@ p {
   filter: invert(43%) sepia(52%) saturate(5425%) hue-rotate(266deg)
     brightness(85%) contrast(104%);
 }
+
 .volunteer .item > .icon > img {
-  width: 1em;
+  width: 1.3em;
 }
 .volunteer .item > .icon {
   font-size: 2em;
   color: var(--secondary-color);
+  position: absolute;
+  right: 100%;
+  flex-direction: column;
 }
 .volunteer .item {
   font-size: 1em;
+  position: relative;
+  margin-left: 10%;
+}
+.volunteer .title {
+  font-size: 1em;
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.volunteer .description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hobbies {
@@ -478,6 +495,11 @@ p {
   grid-area: skills;
   text-align: center;
   margin-top: 1.5em;
+}
+.skills > .title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .skills > .items {
   display: flex;

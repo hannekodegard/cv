@@ -80,8 +80,8 @@ app.get('/cv', async (_, res) => {
     cv.education.push({ school, type, startDate, endDate })
   })
 
-  work.forEach(({ company, title, startDate, endDate }) => {
-    cv.work.push({ company, title, startDate, endDate })
+  work.forEach(({ company, title, description, startDate, endDate }) => {
+    cv.work.push({ company, title, description, startDate, endDate })
   })
 
   hobbies.forEach(({ hobby, logo }) => {
@@ -93,8 +93,15 @@ app.get('/cv', async (_, res) => {
   })
 
   volunteer_work.forEach(
-    ({ title, organisation, logo, startDate, endDate }) => {
-      cv.volunteer_work.push({ title, organisation, logo, startDate, endDate })
+    ({ title, organisation, logo, description, startDate, endDate }) => {
+      cv.volunteer_work.push({
+        title,
+        organisation,
+        logo,
+        description,
+        startDate,
+        endDate,
+      })
     }
   )
 
