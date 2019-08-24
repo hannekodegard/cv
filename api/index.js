@@ -26,7 +26,7 @@ app.get('/cv', async (_, res) => {
       number: 0,
       email: '',
       website: '',
-      links: [],
+      links: {},
     },
     key_qualifications: {},
     skills: [],
@@ -72,7 +72,7 @@ app.get('/cv', async (_, res) => {
         cv.info.website = [content, link]
         break
       case 'link':
-        cv.info.links.push([content, link])
+        cv.info.links = { ...cv.info.links, [content]: link }
     }
   })
 

@@ -22,11 +22,19 @@
       </div>
       <div class="item website">
         <font-awesome-icon :icon="['fas', 'globe-europe']" />
-        {{cv.info.website[0]}}
+        <a target="_blank" :href="cv.info.website[1]">{{cv.info.website[0]}}</a>
       </div>
       <div class="item adress">
         <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
         {{cv.info.adress}}
+      </div>
+      <div class="item github">
+        <font-awesome-icon :icon="['fab', 'github']" />
+        <a target="_blank" :href="cv.info.links.github">hannekodegard</a>
+      </div>
+      <div class="item linkedin">
+        <font-awesome-icon :icon="['fab', 'linkedin']" />
+        <a target="_blank" :href="cv.info.links.linkedin">hanne-odegard</a>
       </div>
     </div>
     <div class="work card">
@@ -124,6 +132,7 @@ html {
 .cv {
   max-width: 1000px;
   min-width: 1000px;
+  height: calc(1000px * 1.414);
   margin: 2em auto;
   overflow: hidden;
   display: grid;
@@ -328,6 +337,10 @@ p {
   margin: 0 0.5em;
   font-size: 2em;
 }
+.contact-info a {
+  color: #ddd;
+}
+
 .work {
   grid-area: work;
 }
@@ -523,6 +536,7 @@ p {
 }
 
 @media print {
+  /*
   * {
     color: #000 !important;
   }
@@ -534,6 +548,14 @@ p {
   }
   img {
     filter: none !important;
+  }
+  */
+  .cv {
+    margin: 0;
+  }
+  @page {
+    margin: 0mm 0mm 0mm 0mm;
+    size: 1000px calc(1000px * 1.4142);
   }
 }
 </style>
