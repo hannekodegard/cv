@@ -57,8 +57,8 @@
           <img class="hclogo" v-if="v.logo.slice(0,4)==='http'" :src="v.logo" />
           <font-awesome-icon v-else :icon="v.logo.split(' ')" />
         </div>
-        <div class="title">{{v.title}}</div>
-        <p class="description">{{v.description}}</p>
+        <div class="title" v-html="v.title" />
+        <p class="description" v-html="v.description" />
       </div>
     </div>
     <div class="hobbies card">
@@ -70,7 +70,7 @@
     </div>
     <div class="skills card dark">
       <h2 class="title">Ferdigheter</h2>
-      <p>Ferdigheter jeg har tilegnet meg gjennoom skole og hobbyprosjekter.</p>
+      <p>Ferdigheter jeg har tilegnet meg gjennom skole og hobbyprosjekter.</p>
       <div class="items">
         <div v-for="s in cv.skills" v-bind:key="s.skill" class="item">
           <font-awesome-icon
@@ -377,7 +377,7 @@ p {
 }
 .education {
   grid-area: education;
-  padding-bottom: 40px;
+  padding-bottom: 10px;
 }
 .education .major {
   color: var(--secondary-color);
@@ -385,13 +385,11 @@ p {
   text-transform: uppercase;
   font-weight: bold;
 }
-
 .education .major > span {
   color: #242021;
   font-size: 0.7em;
   text-transform: none;
 }
-
 .education > .items {
   display: flex;
   flex-flow: row wrap;
@@ -420,7 +418,7 @@ p {
   right: 20px;
   top: 0;
   width: 8px;
-  height: 100%;
+  height: calc(100% - 24px);
   background-size: 9px 9px;
   background-repeat: repeat-y;
   background-image: radial-gradient(
@@ -443,22 +441,24 @@ p {
   width: 1.3em;
 }
 .volunteer .item > .icon {
-  font-size: 2em;
+  font-size: 1.5em;
   color: var(--secondary-color);
   position: absolute;
-  right: 100%;
+  right: calc(100% + 15px);
+  top: 0.2em;
   flex-direction: column;
 }
 .volunteer .item {
   font-size: 1em;
   position: relative;
-  margin-left: 10%;
+  margin-left: 50px;
 }
 .volunteer .title {
   font-size: 1em;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0.4em 0;
 }
 .volunteer .description {
   display: flex;
@@ -520,5 +520,20 @@ p {
 }
 .skills > .items > .item > svg {
   font-size: 3.5em;
+}
+
+@media print {
+  * {
+    color: #000 !important;
+  }
+  .card {
+    border: none !important;
+  }
+  .education.card {
+    margin-top: -64px;
+  }
+  img {
+    filter: none !important;
+  }
 }
 </style>
