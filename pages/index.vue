@@ -8,7 +8,7 @@
         <div class="main-title">Web designer og utvikler</div>
         <p
           class="key-qualifications"
-        >Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+        >Studerer nå 2.klasse datateknologi ved NTNU. Glad i å jobbe med frontend, men trives også med backend. Ser på meg selv som en glad og trivelig jente, som ikke sier nei til en utfordring.</p>
       </div>
     </div>
     <div class="contact-info">
@@ -265,6 +265,9 @@ p {
   border-radius: 16px;
   width: 19%;
   margin-top: 1.4em;
+  object-fit: cover;
+  height: 250px;
+  object-position: top;
 }
 .card {
   background-color: #e5e5e5;
