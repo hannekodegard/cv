@@ -390,7 +390,7 @@ p {
 }
 .education {
   grid-area: education;
-  padding-bottom: 10px;
+  padding-bottom: 0;
 }
 .education .major {
   color: var(--secondary-color);
@@ -409,14 +409,14 @@ p {
 }
 .education > .items > .item {
   flex: 1 1 calc(50% - 80px);
-  height: 150px;
+  height: 120px;
   margin-left: 80px;
   position: relative;
 }
 .education > .items > .item > .date {
   position: absolute;
   background-color: var(--secondary-color);
-  transform: translate(-90px, calc(50% + 10px)) rotate(-90deg);
+  transform: translate(-90px, calc(50% - 15px)) rotate(-90deg);
   border-radius: 1em;
   padding: 0.2em 1.1em;
   font-size: 1em;
@@ -429,9 +429,9 @@ p {
   content: '';
   position: absolute;
   right: 20px;
-  top: 0;
+  top: -15px;
   width: 8px;
-  height: calc(100% - 24px);
+  height: calc(100% - 25px);
   background-size: 9px 9px;
   background-repeat: repeat-y;
   background-image: radial-gradient(
