@@ -21,3 +21,6 @@ pipeline:
       branch: master
     script:
       - systemctl restart hanneko-cv
+      - sleep 3
+      - node generate-pdf.js
+      - mv cv_hanneko_*.pdf /home/niklasmh/hanneko/build

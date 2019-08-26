@@ -37,3 +37,5 @@ dist
 
 # vuepress build output
 .vuepress/dist
+
+cv_hanneko_*.pdf
