@@ -15,3 +15,4 @@ services:
     command: node generate-pdf
     volumes:
       - .:/app
+    user: root
