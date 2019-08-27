@@ -1,96 +1,99 @@
 <template>
-  <div class="cv">
-    <div class="key-info">
-      <img class="picture" src="https://hanneko.no/hanne.jpg" alt="Picture" />
-      <div class="key-info-text">
-        <h1 class="name">{{cv.info.name}}</h1>
-        <!---<div class="picture">{{cv.info.picture}}</div>-->
-        <div class="main-title">Web designer og utvikler</div>
-        <p
-          class="key-qualifications"
-        >Studerer nå 2.klasse datateknologi ved NTNU. Glad i å jobbe med frontend, men trives også med backend. Ser på meg selv som en glad og trivelig jente, som ikke sier nei til en utfordring.</p>
+  <div class="cv-container">
+    <div class="cv">
+      <div class="key-info">
+        <img class="picture" src="https://hanneko.no/hanne.jpg" alt="Picture" />
+        <div class="key-info-text">
+          <h1 class="name">{{cv.info.name}}</h1>
+          <!---<div class="picture">{{cv.info.picture}}</div>-->
+          <div class="main-title">Web designer og utvikler</div>
+          <p
+            class="key-qualifications"
+          >Studerer nå 2.klasse datateknologi ved NTNU. Glad i å jobbe med frontend, men trives også med backend. Ser på meg selv som en glad og trivelig jente, som ikke sier nei til en utfordring.</p>
+        </div>
       </div>
-    </div>
-    <div class="contact-info">
-      <div class="item number">
-        <font-awesome-icon :icon="['fas', 'mobile-alt']" />
-        {{cv.info.number}}
+      <div class="contact-info">
+        <div class="item number">
+          <font-awesome-icon :icon="['fas', 'mobile-alt']" />
+          {{cv.info.number}}
+        </div>
+        <div class="item email">
+          <font-awesome-icon :icon="['fas', 'at']" />
+          {{cv.info.email}}
+        </div>
+        <div class="item website">
+          <font-awesome-icon :icon="['fas', 'globe-europe']" />
+          <a target="_blank" :href="cv.info.website[1]">{{cv.info.website[0]}}</a>
+        </div>
+        <div class="item adress">
+          <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
+          {{cv.info.adress}}
+        </div>
+        <div class="item github">
+          <font-awesome-icon :icon="['fab', 'github']" />
+          <a target="_blank" :href="cv.info.links.github">hannekodegard</a>
+        </div>
+        <div class="item linkedin">
+          <font-awesome-icon :icon="['fab', 'linkedin']" />
+          <a target="_blank" :href="cv.info.links.linkedin">hanne-odegard</a>
+        </div>
       </div>
-      <div class="item email">
-        <font-awesome-icon :icon="['fas', 'at']" />
-        {{cv.info.email}}
+      <div class="work card">
+        <h2 class="title">Jobberfaring</h2>
+        <div v-for="w in cv.work" v-bind:key="w.company" class="item">
+          <div class="date">{{joinDates(w.startDate, w.endDate)}}</div>
+          <h2 class="work-title">
+            {{w.title}}
+            <span class="location">- {{w.company}}</span>
+          </h2>
+          <p class="description">{{w.description}}</p>
+        </div>
       </div>
-      <div class="item website">
-        <font-awesome-icon :icon="['fas', 'globe-europe']" />
-        <a target="_blank" :href="cv.info.website[1]">{{cv.info.website[0]}}</a>
+      <div class="education card">
+        <h2 class="title">Utdanning</h2>
+        <div class="items">
+          <div v-for="e in cv.education" v-bind:key="e.school" class="item">
+            {{e.school}}
+            <div class="date">{{joinDates(e.startDate, e.endDate)}}</div>
+            <h2 class="major">{{e.type}}</h2>
+          </div>
+        </div>
       </div>
-      <div class="item adress">
-        <font-awesome-icon :icon="['fas', 'map-marker-alt']" />
-        {{cv.info.adress}}
+      <div class="volunteer card">
+        <h2 class="title">Frivillig Arbeid</h2>
+        <div v-for="v in cv.volunteer_work" v-bind:key="v.title" class="item">
+          <div v-if="v.logo && v.logo.length" class="icon">
+            <img class="hclogo" v-if="v.logo.slice(0,4)==='http'" :src="v.logo" />
+            <font-awesome-icon v-else :icon="v.logo.split(' ')" />
+          </div>
+          <div class="title" v-html="v.title" />
+          <p class="description" v-html="v.description" />
+        </div>
       </div>
-      <div class="item github">
-        <font-awesome-icon :icon="['fab', 'github']" />
-        <a target="_blank" :href="cv.info.links.github">hannekodegard</a>
+      <div class="hobbies card">
+        <h2 class="title">Hobbyer</h2>
+        <div v-for="h in cv.hobbies" v-bind:key="h.hobby" class="item">
+          <font-awesome-icon :icon="h.logo.split(' ')" />
+          <span>{{h.hobby}}</span>
+        </div>
       </div>
-      <div class="item linkedin">
-        <font-awesome-icon :icon="['fab', 'linkedin']" />
-        <a target="_blank" :href="cv.info.links.linkedin">hanne-odegard</a>
-      </div>
-    </div>
-    <div class="work card">
-      <h2 class="title">Jobberfaring</h2>
-      <div v-for="w in cv.work" v-bind:key="w.company" class="item">
-        <div class="date">{{joinDates(w.startDate, w.endDate)}}</div>
-        <h2 class="work-title">
-          {{w.title}}
-          <span class="location">- {{w.company}}</span>
-        </h2>
-        <p class="description">{{w.description}}</p>
-      </div>
-    </div>
-    <div class="education card">
-      <h2 class="title">Utdanning</h2>
-      <div class="items">
-        <div v-for="e in cv.education" v-bind:key="e.school" class="item">
-          {{e.school}}
-          <div class="date">{{joinDates(e.startDate, e.endDate)}}</div>
-          <h2 class="major">{{e.type}}</h2>
+      <div class="skills card dark">
+        <h2 class="title">Ferdigheter</h2>
+        <p>Ferdigheter jeg har tilegnet meg gjennom skole og hobbyprosjekter.</p>
+        <div class="items">
+          <div v-for="s in cv.skills" v-bind:key="s.skill" class="item">
+            <font-awesome-icon
+              :icon="s.logo.split(' ')"
+              mask="circle"
+              transform="shrink-8"
+              size="lg"
+            />
+            <span>{{s.skill}}</span>
+          </div>
         </div>
       </div>
     </div>
-    <div class="volunteer card">
-      <h2 class="title">Frivillig Arbeid</h2>
-      <div v-for="v in cv.volunteer_work" v-bind:key="v.title" class="item">
-        <div v-if="v.logo && v.logo.length" class="icon">
-          <img class="hclogo" v-if="v.logo.slice(0,4)==='http'" :src="v.logo" />
-          <font-awesome-icon v-else :icon="v.logo.split(' ')" />
-        </div>
-        <div class="title" v-html="v.title" />
-        <p class="description" v-html="v.description" />
-      </div>
-    </div>
-    <div class="hobbies card">
-      <h2 class="title">Hobbyer</h2>
-      <div v-for="h in cv.hobbies" v-bind:key="h.hobby" class="item">
-        <font-awesome-icon :icon="h.logo.split(' ')" />
-        <span>{{h.hobby}}</span>
-      </div>
-    </div>
-    <div class="skills card dark">
-      <h2 class="title">Ferdigheter</h2>
-      <p>Ferdigheter jeg har tilegnet meg gjennom skole og hobbyprosjekter.</p>
-      <div class="items">
-        <div v-for="s in cv.skills" v-bind:key="s.skill" class="item">
-          <font-awesome-icon
-            :icon="s.logo.split(' ')"
-            mask="circle"
-            transform="shrink-8"
-            size="lg"
-          />
-          <span>{{s.skill}}</span>
-        </div>
-      </div>
-    </div>
+    <a href="https://hanneko.no/cv_hanneko_2019.pdf" download class="button">Last ned som .pdf</a>
   </div>
 </template>
 
@@ -130,10 +133,11 @@ html {
   color: #e3e3e3;
 }
 .cv {
+  text-align: left;
+  border-radius: 4px;
   max-width: 1000px;
   min-width: 1000px;
   height: calc(1000px * 1.414);
-  margin: 2em auto;
   overflow: hidden;
   display: grid;
   grid-template-columns: auto 280px;
@@ -538,6 +542,32 @@ p {
   font-size: 3.5em;
 }
 
+.cv-container {
+  text-align: center;
+  margin: 2em auto 1em;
+  width: 1000px;
+}
+
+.button {
+  display: inline-block;
+  color: #666;
+  font-weight: lighter;
+  padding: 4px 12px;
+  margin: 1.5em 0 0.5em;
+  background-color: #ddd;
+  font-family: monospace;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px #0008;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+.button:active {
+  box-shadow: 0 0 0 #000;
+}
+.button::before {
+  content: '↓ ';
+}
+
 @media print {
   /*
   * {
@@ -555,6 +585,13 @@ p {
   */
   .cv {
     margin: 0;
+    border-radius: 0;
+  }
+  .cv-container {
+    margin: 0;
+  }
+  .button {
+    display: none;
   }
   @page {
     margin: 0mm 0mm 0mm 0mm;
