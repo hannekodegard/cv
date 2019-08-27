@@ -10,3 +10,8 @@ services:
     volumes:
       - .:/srv/hanne:rw
     working_dir: /srv/hanne
+  generate-pdf:
+    image: alekzonder/puppeteer
+    command: node generate-pdf
+    volumes:
+      - .:/app

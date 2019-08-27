@@ -23,5 +23,5 @@ pipeline:
       - systemctl restart hanneko-cv
       - cd /home/niklasmh/hanneko-cv
       - sleep 3
-      - node generate-pdf.js
+      - docker-compose run generate-pdf
       - mv cv_hanneko_*.pdf /home/niklasmh/hanneko/build
