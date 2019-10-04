@@ -63,7 +63,7 @@
         <h2 class="title">Frivillig Arbeid</h2>
         <div v-for="v in cv.volunteer_work" v-bind:key="v.title" class="item">
           <div v-if="v.logo && v.logo.length" class="icon">
-            <img class="hclogo" v-if="v.logo.slice(0,4)==='http'" :src="v.logo" />
+            <img class="logo" v-if="/^(http|\/)/.test(v.logo)" :src="v.logo" />
             <font-awesome-icon v-else :icon="v.logo.split(' ')" />
           </div>
           <div class="title" v-html="v.title" />
@@ -451,7 +451,7 @@ p {
 .volunteer {
   grid-area: volunteer;
 }
-.hclogo {
+.logo {
   filter: hue-rotate(-60deg);
   filter: invert(43%) sepia(52%) saturate(5425%) hue-rotate(266deg)
     brightness(85%) contrast(104%);
@@ -479,6 +479,9 @@ p {
   align-items: center;
   justify-content: center;
   margin: 0.4em 0;
+}
+.volunteer .item .title {
+  justify-content: flex-start;
 }
 .volunteer .description {
   display: flex;
