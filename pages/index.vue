@@ -133,6 +133,7 @@ html {
   color: #e3e3e3;
 }
 .cv {
+  zoom: 1.2;
   text-align: left;
   border-radius: 4px;
   max-width: 1000px;
@@ -284,7 +285,7 @@ p {
   color: #e5e5e5;
 }
 .card:not(.dark) > .title {
-  margin-bottom: 1.2em;
+  margin-bottom: 0.8em;
   color: var(--secondary-color);
 }
 .card.dark {
@@ -335,7 +336,7 @@ p {
 }
 .contact-info > .item {
   flex: 1 1 50%;
-  margin: 1em 0;
+  margin: 8px 0;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
@@ -534,7 +535,7 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 14px 10px;
+  margin: 6px 10px;
 }
 .skills > .items > .item > span {
   font-size: 0.75em;
