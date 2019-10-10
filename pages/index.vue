@@ -48,6 +48,7 @@
           </h2>
           <p class="description">{{w.description}}</p>
         </div>
+        <p class="references">Referanser kan oppgis ved forespørsel</p>
       </div>
       <div class="education card">
         <h2 class="title">Utdanning</h2>
@@ -348,7 +349,9 @@ p {
 .contact-info a {
   color: #ddd;
 }
-
+.references {
+  margin-left: 25px;
+}
 .work {
   grid-area: work;
 }
