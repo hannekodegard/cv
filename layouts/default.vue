@@ -6,7 +6,16 @@
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600,700&display=swap');
-
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Montserrat Regular'), local('Montserrat-Regular'),
+    url(https://fonts.gstatic.com/s/montserrat/v12/JTUQjIg1_i6t8kCHKm45_QpRxC7mw9c.woff2)
+      format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F,
+    U+FE2E-FE2F;
+}
 :root {
   --primary-color: hsl(286, 55%, 40%);
   --secondary-color: hsl(288, 71%, 54%);
