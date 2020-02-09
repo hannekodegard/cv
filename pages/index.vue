@@ -2,7 +2,7 @@
   <div class="cv-container">
     <div class="cv">
       <div class="key-info">
-        <img class="picture" src="https://hanneko.no/hanne.jpg" alt="Picture" />
+        <img class="picture" src="\Cv_shirt.jpg" alt="Picture" />
         <div class="key-info-text">
           <h1 class="name">{{cv.info.name}}</h1>
           <!---<div class="picture">{{cv.info.picture}}</div>-->
