@@ -94,7 +94,11 @@
         </div>
       </div>
     </div>
-    <a href="https://hanneko.no/cv_hanneko_2019.pdf" download class="button">Last ned som .pdf</a>
+    <a
+      href="https://hanneko.no/cv_hanneko.pdf"
+      :download="`cv_hanneko_${dateNow}.pdf`"
+      class="button"
+    >Last ned som .pdf</a>
   </div>
 </template>
 
@@ -107,6 +111,9 @@ export default {
       .then(res => {
         return { cv: res.data }
       })
+  },
+  computed: {
+    dateNow: () => new Date().toISOString().slice(0, 10),
   },
   methods: {
     joinDates(from, to) {

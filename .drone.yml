@@ -24,4 +24,5 @@ pipeline:
       - cd /home/niklasmh/hanneko-cv
       - sleep 3
       - docker-compose run generate-pdf
-      - mv cv_hanneko_*.pdf /home/niklasmh/hanneko/build
+      - cp cv_hanneko_*.pdf cv_hanneko.pdf
+      - mv cv_hanneko*.pdf /home/niklasmh/hanneko/build
